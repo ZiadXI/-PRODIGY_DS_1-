@@ -1,0 +1,19 @@
+# Load necessary library
+library(ggplot2)
+
+# Load the iris dataset
+data(iris)
+
+# Display the first few rows of the dataset
+head(iris)
+
+# Create a scatter plot using ggplot2
+plot <- ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
+  geom_point(size = 3) +
+  labs(title = "Scatter Plot of Sepal Length vs Sepal Width",
+       x = "Sepal Length",
+       y = "Sepal Width") +
+  theme_minimal()
+
+# Print the plot
+print(plot)
