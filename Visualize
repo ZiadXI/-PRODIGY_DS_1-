@@ -1,19 +1,28 @@
-# Load necessary library
 library(ggplot2)
 
-# Load the iris dataset
-data(iris)
+# Set seed for reproducibility
+set.seed(123)
 
-# Display the first few rows of the dataset
-head(iris)
+# Generate sample data
+n <- 1000
+ages <- round(rnorm(n, mean = 35, sd = 10), 0)
+genders <- sample(c("Male", "Female", "Other"), n, replace = TRUE, prob = c(0.48, 0.48, 0.04))
 
-# Create a scatter plot using ggplot2
-plot <- ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
-  geom_point(size = 3) +
-  labs(title = "Scatter Plot of Sepal Length vs Sepal Width",
-       x = "Sepal Length",
-       y = "Sepal Width") +
+# Combine into a data frame
+data <- data.frame(Age = ages, Gender = genders)
+
+# Plot histogram for age distribution
+age_plot <- ggplot(data, aes(x = Age)) +
+  geom_histogram(binwidth = 5, fill = "blue", color = "black", alpha = 0.7) +
+  labs(title = "Age Distribution", x = "Age", y = "Frequency") +
   theme_minimal()
 
-# Print the plot
-print(plot)
+# Plot bar chart for gender distribution
+gender_plot <- ggplot(data, aes(x = Gender)) +
+  geom_bar(fill = "orange", color = "black", alpha = 0.7) +
+  labs(title = "Gender Distribution", x = "Gender", y = "Count") +
+  theme_minimal()
+
+# Print the plots
+print(age_plot)
+print(gender_plot)
